@@ -14,12 +14,12 @@ bindsym $mod+Shift+s *some exec call...*
 The program will only extract keybinds with that exact format, so leave any "undocumented" bindings the way they are.
 
 ## Installation
-```
+```sh
 cargo install --git https://github.com/nickofolas/i3-keybinds-help --branch main i3-keybinds-help
 ```
 
 Or, if you're feeling adventurous, you can build from source.
-```
+```sh
 git clone https://github.com/nickofolas/i3-keybinds-help.git # via HTTPS
 git clone git@github.com:nickofolas/i3-keybinds-help.git     # via SSH
 
