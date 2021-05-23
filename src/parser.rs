@@ -4,6 +4,11 @@ use std::fs::File;
 use std::io::{prelude::*, BufReader};
 use std::path::Path;
 
+lazy_static! {
+    static ref GET_KEYBINDS: Regex = Regex::new(r"# ## .* ##\nbindsym .+").unwrap();
+    static ref GET_COMMENT: Regex = Regex::new(r"# ## (.*) ##").unwrap();
+}
+
 // Because I3Config just doesn't look right
 #[allow(non_camel_case_types)]
 pub struct i3Config {
@@ -22,21 +27,12 @@ impl i3Config {
         hotkey.replace("+", " + ").replace("$mod", "")
     }
 
-    fn extract_comment(line: &str) -> String {
-        // Using lazy_static avoids re-compiling the regex every time
-        lazy_static! {
-            static ref GET_COMMENT: Regex = Regex::new(r"# ## (.*) ##").unwrap();
-        }
-
+    fn extract_comment(line: &str) -> String { 
         let caps = GET_COMMENT.captures(line).unwrap();
         caps[1].to_string()
     }
 
     fn parse_file(&mut self) -> Result<Vec<String>, regex::Error> {
-        lazy_static! {
-            static ref GET_KEYBINDS: Regex = Regex::new(r"# ## .* ##\nbindsym .+").unwrap();
-        }
-
         let mut keybinds: Vec<String> = Vec::new();
         let mut file_contents: String = String::new();
         self.reader
