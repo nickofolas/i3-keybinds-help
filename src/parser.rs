@@ -27,7 +27,7 @@ impl i3Config {
         hotkey.replace("+", " + ").replace("$mod", "")
     }
 
-    fn extract_comment(line: &str) -> String { 
+    fn extract_comment(line: &str) -> String {
         let caps = GET_COMMENT.captures(line).unwrap();
         caps[1].to_string()
     }
