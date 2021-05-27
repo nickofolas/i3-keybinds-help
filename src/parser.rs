@@ -1,8 +1,10 @@
 use lazy_static::lazy_static;
 use regex::Regex;
-use std::fs::File;
-use std::io::{prelude::*, BufReader};
-use std::path::Path;
+use std::{
+    fs::File,
+    io::{prelude::*, BufReader},
+    path::Path,
+};
 
 lazy_static! {
     static ref GET_KEYBINDS: Regex = Regex::new(r"# ## .* ##\nbindsym .+").unwrap();

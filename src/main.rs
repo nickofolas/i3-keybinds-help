@@ -1,8 +1,10 @@
 use parser::i3Config;
 use shellexpand::{env_with_context_no_errors, tilde};
-use std::borrow::Cow::Borrowed;
-use std::env::var;
-use std::path::{Path, PathBuf};
+use std::{
+    borrow::Cow::Borrowed,
+    env::var,
+    path::{Path, PathBuf},
+};
 
 mod parser;
 
